@@ -39,6 +39,8 @@ Examples:
 
 ## 3. Namespace Format Rules
 
+Namespace records MUST conform to `schemas/namespace.schema.json` (v1).
+
 Namespaces MUST:
 - Be lowercase
 - Use ASCII characters only

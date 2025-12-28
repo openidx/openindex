@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openindex.id/schemas/namespace.schema.json",
+  "title": "OpenIndex Namespace Record",
+  "description": "Schema for OpenIndex namespace records. This schema is immutable once published.",
+  "type": "object",
+  "required": [
+    "openindex",
+    "type",
+    "name",
+    "description",
+    "created_at",
+    "record_version"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "openindex": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://openindex\\.(id|cc)/[a-z0-9-]{3,63}$",
+      "description": "Canonical OpenIndex URI for the namespace"
+    },
+    "type": {
+      "type": "string",
+      "const": "namespace",
+      "description": "Record type identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Human-readable name of the namespace"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Short description of the namespace purpose"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of namespace creation"
+    },
+    "record_version": {
+      "type": "string",
+      "const": "v1",
+      "description": "Schema version of this record"
+    },
+    "checksum": {
+      "type": "object",
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["sha256"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      },
+      "additionalProperties": false,
+      "description": "Optional cryptographic checksum of the record"
+    }
+  }
+}
