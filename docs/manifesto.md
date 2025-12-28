@@ -1,0 +1,3 @@
+# OpenIndex Manifesto
+
+Draft.

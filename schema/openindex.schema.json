@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenIndex Record",
+  "type": "object",
+  "required": [
+    "openindex",
+    "type",
+    "title",
+    "created_at",
+    "record_version"
+  ],
+  "properties": {
+    "openindex": {
+      "type": "string",
+      "format": "uri"
+    },
+    "type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "creators": {
+      "type": "array"
+    },
+    "publisher": {
+      "type": "object"
+    },
+    "date_published": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "record_version": {
+      "type": "string"
+    }
+  }
+}
