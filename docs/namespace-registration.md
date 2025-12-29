@@ -1,193 +1,231 @@
-# OpenIndex Namespace Registration Rules (v0.1)
+## OpenIndex Namespace Registration
 
-**Status:** Draft  
-**Applies to:** `openindex.id` canonical registry
+### Version
 
----
+**v1.1 — Web-Based Registration Model**
 
-## 1. Purpose of Namespaces
+----------
 
-A namespace in OpenIndex represents a **stable publishing identity**, not ownership of ideas or content.
+## 1. Overview
 
-Namespaces exist to:
-- Group related records
-- Provide provenance
-- Enable discovery
-- Reduce ambiguity
+Namespaces are the primary organizational unit of OpenIndex.
 
-They do **not** imply exclusivity, copyright, or control over meaning.
+To maximize accessibility, OpenIndex supports **web-based namespace registration**, allowing individuals, publishers, businesses, and organizations to apply without requiring developer tools or GitHub access.
 
----
+Once approved, namespaces are authorized to publish immutable OpenIndex records.
 
-## 2. What Can Be a Namespace
+----------
 
-Namespaces may represent:
-- Publishers
-- Organizations
-- Imprints
-- Individuals (authors, creators)
-- Collectives or projects
+## 2. Namespace Structure
 
-Examples:
-```
-/earthpress
-/isaac-horton
-/openmaps
-```
+All namespaces are resolved using a path-based structure:
 
----
+`https://openindex.id/<namespace>/`
 
-## 3. Namespace Format Rules
+Namespaces own all records published beneath their path.
 
-Namespace records MUST conform to `schemas/namespace.schema.json` (v1).
+----------
 
-Namespaces MUST:
-- Be lowercase
-- Use ASCII characters only
-- Use hyphens (`-`) for separation
-- Be between 3 and 63 characters
-- Not end with a hyphen
+## 3. Who Can Register a Namespace?
 
-Valid:
-```
-earthpress
-open-maps
-isaac-horton
-```
+Any individual or organization may apply, including:
 
-Invalid:
-```
-EarthPress
-open_maps
-123
--press
-```
+-   publishers
 
----
+-   authors
 
-## 4. Reserved Namespaces
+-   businesses
 
-The following are **reserved**:
-- openindex
-- admin
-- api
-- system
-- www
-- root
-- test
-- docs
+-   institutions
 
-Additional reserved names MAY be added.
+-   collectives
 
----
+-   open projects
 
-## 5. First-Come, First-Served (With Guardrails)
 
-Namespaces are generally assigned on a **first-come, first-served** basis, with protections against:
-- Impersonation
-- Trademark abuse
-- Deceptive similarity
-- Squatting without use
+Applicants must:
 
----
+-   represent a real entity
 
-## 6. Proof of Control (Lightweight)
+-   agree to the OpenIndex Terms
 
-Any ONE of the following is sufficient:
-- Control of a matching domain
-- Control of a matching GitHub org/user
-- Existing publication history
-- Public website or imprint page
+-   accept stewardship responsibility
 
----
 
-## 7. Registration Mechanism
+----------
 
-Namespaces are registered via **Git pull request**.
+## 4. Web Registration Process
 
-Required file:
-```
-records/{namespace}/_namespace.json
-```
+### Step 1: Submit Application
+
+Applicants submit a namespace request via the OpenIndex web interface.
 
 Required fields:
-```json
-{
-  "openindex": "https://openindex.id/{namespace}",
-  "type": "namespace",
-  "name": "Human-readable name",
-  "description": "Short description",
-  "created_at": "ISO-8601 timestamp",
-  "record_version": "v1"
-}
-```
 
----
+-   **Requested namespace**
 
-## 8. Review Process
+-   **Applicant name**
 
-- PR-based review
-- Focus on rule compliance
-- No content censorship
-- Target review time: 7 days
+-   **Organization (if applicable)**
 
----
+-   **Public contact email**
 
-## 9. Namespace Mutability
+-   **Declared scope**
 
-Namespaces are **append-only**.
+-   **Intended record types**
 
-Allowed:
-- New records
-- Metadata additions
+-   **Agreement to Terms & Conditions**
 
-Restricted:
-- Renaming
-- Reassignment
-- Deletion
 
----
+All fields are validated automatically.
 
-## 10. Disputes
+----------
 
-OpenIndex does not adjudicate trademarks.
+### Step 2: Automated Pre-Checks
 
-Resolution methods:
-- Maintain status quo
-- Request proof
-- Encourage disambiguation
+Before human review, the system performs:
 
----
+-   namespace availability check
 
-## 11. Abuse & Revocation
+-   reserved-name validation
 
-Namespaces may be frozen (not deleted) for:
-- Impersonation
-- Fraud
-- Malware
-- Automated spam
+-   naming rule enforcement
 
-Frozen namespaces continue to resolve.
+-   scope completeness check
 
----
 
-## 12. Governance Principle
+Applications that fail validation are rejected immediately with feedback.
 
-**Namespaces are stewarded, not owned.**
+----------
 
----
+### Step 3: Maintainer Review
 
-## 13. Design Goals
+Valid submissions enter a review queue accessible to authorized maintainers.
 
-This policy optimizes for:
-- Longevity
-- Neutrality
-- Trust
-- Low friction
+Review criteria:
 
----
+-   impersonation risk
 
-## 14. Versioning
+-   scope clarity
 
-- v0.1 — Initial rules
-- Future changes must be backward-compatible
+-   conflict with existing namespaces
+
+-   completeness and legitimacy
+
+
+This process is intentionally similar to:
+
+> payment processor onboarding or app store approvals
+
+----------
+
+### Step 4: Approval & Registration
+
+Once approved:
+
+1.  The namespace is marked **Approved**
+
+2.  A canonical namespace record is automatically created
+
+3.  The record is written following immutable record rules
+
+4.  The applicant is notified of approval
+
+5.  Publishing access is enabled
+
+
+No manual Git operations are required.
+
+----------
+
+## 5. Namespace Record Creation (Automated)
+
+Approval triggers automatic creation of a namespace record:
+
+-   stored in the registry
+
+-   versioned and immutable
+
+-   resolvable immediately
+
+-   linked to the namespace owner
+
+
+This guarantees:
+
+-   structural consistency
+
+-   auditability
+
+-   zero post-approval drift
+
+
+----------
+
+## 6. Namespace Permissions
+
+Approved namespaces may:
+
+-   publish records via web UI
+
+-   publish records via API
+
+-   perform bulk imports (where enabled)
+
+
+Namespaces may not:
+
+-   modify or delete existing records
+
+-   publish outside declared scope
+
+-   impersonate other namespaces
+
+
+----------
+
+## 7. Maintenance & Status
+
+Namespaces may have the following states:
+
+-   **Pending**
+
+-   **Approved**
+
+-   **Suspended**
+
+-   **Deprecated**
+
+
+Records remain resolvable in all states.
+
+----------
+
+## 8. Appeals & Updates
+
+Applicants may:
+
+-   appeal rejections
+
+-   request scope clarification
+
+-   update contact information
+
+
+Scope expansions require maintainer approval.
+
+----------
+
+## 9. Future Extensions
+
+This model supports:
+
+-   delegated maintainer roles
+
+-   automated trust scoring
+
+-   private resolvers
+
+-   federation with other registries
+
+-   franchise and product verticals (future)
